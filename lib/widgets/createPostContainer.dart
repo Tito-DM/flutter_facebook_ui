@@ -1,6 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/models/user_model.dart';
+
+import 'widgets.dart';
 
 class CreatePostContainer extends StatelessWidget {
   final User currentUser;
@@ -11,18 +12,13 @@ class CreatePostContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100.0,
-      color: Colors.orange,
+      color: Colors.white,
       padding: EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
       child: Column(
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 20.0,
-                backgroundColor: Colors.grey[200],
-                backgroundImage:
-                    CachedNetworkImageProvider(currentUser.imageUrl),
-              ),
+             ProfileAvatar(imgUrl: currentUser.imageUrl),
               const SizedBox(width: 8.9),
               Expanded(
                   // expend the textField
@@ -36,15 +32,36 @@ class CreatePostContainer extends StatelessWidget {
           Divider(
             height: 10.0,
             thickness: 0.5,
+            color: Colors.grey
           ),
-          Row(
-            children: [
-              TextButton.icon(
-                onPressed: () => {},
-                icon: Icon(Icons.video_call),
-                label: const Text("live"),
-              ),
-            ],
+         Container(
+           height: 40.0,
+           child:  Row(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton.icon(
+                  onPressed: () => {},
+                  icon: Icon(Icons.video_call),
+                  label: const Text("live"),
+                ),
+                const VerticalDivider(width: 8.0, color: Colors.grey),
+                TextButton.icon(
+                    onPressed: () => {},
+                    icon: const Icon(
+                      Icons.photo_library,
+                      color: Colors.green,
+                    ),
+                    label: const Text("gallery")),
+                const VerticalDivider(width: 8.0, color: Colors.grey),
+                TextButton.icon(
+                    onPressed: () => {},
+                    icon: const Icon(
+                      Icons.video_call,
+                      color: Colors.purple,
+                    ),
+                    label: const Text("room")),
+              ],
+            ),
           )
         ],
       ),
