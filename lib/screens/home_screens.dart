@@ -53,10 +53,11 @@ class HomeScreen extends StatelessWidget {
               ),
 
               SliverList(delegate: SliverChildBuilderDelegate(
-                (context,inde){
-                  final Post post = posts[posts:posts];
+                (context,index){
+                  final Post post = posts[index];
                   return PostContainer(post: post);
-                }
+                },
+                childCount: posts.length
               ))
 
         ],
