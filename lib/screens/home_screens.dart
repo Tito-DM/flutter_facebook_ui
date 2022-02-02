@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_responsive_ui/config/palette.dart';
 import 'package:flutter_facebook_responsive_ui/data/data.dart';
-import 'package:flutter_facebook_responsive_ui/widgets/circle_btn.dart';
-import 'package:flutter_facebook_responsive_ui/widgets/createPostContainer.dart';
-import 'package:flutter_facebook_responsive_ui/widgets/rooms.dart';
+import 'package:flutter_facebook_responsive_ui/models/models.dart';
+import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +46,19 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
               sliver: SliverToBoxAdapter(
                 child: Rooms(onlineUsers: onlineUsers),
+              )),
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+                sliver: SliverToBoxAdapter(child: Stories(currentUser: currentUser,stories: stories),),
+              ),
+
+              SliverList(delegate: SliverChildBuilderDelegate(
+                (context,inde){
+                  final Post post = posts[posts:posts];
+                  return PostContainer(post: post);
+                }
               ))
+
         ],
       ),
     );
